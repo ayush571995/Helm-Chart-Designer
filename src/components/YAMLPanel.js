@@ -11,6 +11,16 @@ const YAMLPanel = ({
   isGenerating, 
   validationResult 
 }) => {
+  
+  const handleButtonClick = () => {
+  console.log('Generating YAML...');
+  if (onGenerate) {
+    onGenerate();
+  } else {
+    alert('onGenerate function is missing!');
+  }
+};
+
   return (
     <div className="w-96 bg-white border-l border-gray-200 p-4 flex flex-col h-full">
       <div className="flex justify-between items-center mb-4">
@@ -36,7 +46,7 @@ const YAMLPanel = ({
       </div>
 
       <button
-        onClick={onGenerate}
+        onClick={handleButtonClick}
         disabled={isGenerating}
         className="w-full flex items-center justify-center gap-2 bg-blue-500 text-white px-4 py-3 rounded-lg hover:bg-blue-600 disabled:opacity-50 transition-colors mb-4"
       >

@@ -1,70 +1,141 @@
-# Getting Started with Create React App
+# Helm Chart Designer
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+> Transform sketches into Kubernetes deployments
 
-## Available Scripts
+A visual tool that converts hand-drawn architecture diagrams into production-ready Helm charts using AI analysis.
 
-In the project directory, you can run:
+## What it does
 
-### `npm start`
+Draw your Kubernetes architecture on a canvas → AI analyzes the drawing → Get production-ready Helm chart YAML.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Getting started
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Prerequisites
 
-### `npm test`
+- Node.js 16+
+- A modern web browser
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Installation
 
-### `npm run build`
+```bash
+git clone <your-repo>
+cd helm-chart-designer
+npm install
+npm start
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Open `http://localhost:3000` in your browser.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## How to use
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. **Draw**: Use rectangles for deployments, circles for services
+2. **Label**: Add text to name your components
+3. **Generate**: Click "Generate YAML" to create Helm charts
+4. **Download**: Save your generated YAML files
 
-### `npm run eject`
+### Drawing conventions
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+| Shape | Kubernetes Resource |
+|-------|-------------------|
+| Rectangle | Deployment/Pod |
+| Circle | Service |
+| Line | Connection |
+| Text | Component name |
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Example
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+**Draw this:**
+```
+[Web App] → (Load Balancer) → [API Server] → (Database)
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+**Get this:**
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-app
+spec:
+  replicas: 3
+  # ... rest of the deployment
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: load-balancer
+# ... rest of the service
+```
 
-## Learn More
+## Project structure
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```
+src/
+├── components/     # UI components
+├── services/       # Business logic
+├── hooks/         # React hooks
+└── constants/     # Type definitions
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Configuration
 
-### Code Splitting
+Create `.env` file:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+```env
+REACT_APP_CLAUDE_API_KEY=your_api_key
+```
 
-### Analyzing the Bundle Size
+## Features
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- **Visual drawing interface** with multiple tools
+- **AI-powered analysis** using Claude
+- **Real-time YAML generation**
+- **Built-in validation**
+- **Export functionality**
+- **Undo/redo support**
 
-### Making a Progressive Web App
+## Tech stack
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- React 18
+- Canvas API
+- Claude AI
+- Tailwind CSS
+- Lucide icons
 
-### Advanced Configuration
+## Development
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+```bash
+npm start      # Development server
+npm run build  # Production build
+npm test       # Run tests
+```
 
-### Deployment
+## Contributing
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+1. Fork the repo
+2. Create a feature branch
+3. Make your changes
+4. Submit a pull request
 
-### `npm run build` fails to minify
+## Troubleshooting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+**Canvas not loading?**
+- Check browser console for errors
+- Ensure browser supports HTML5 Canvas
+
+**AI generation failing?**
+- Verify Claude API key in `.env`
+- Check network connectivity
+
+**Memory issues?**
+- Canvas size is optimized but can be reduced further in `CanvasService.js`
+
+## Roadmap
+
+- [ ] More drawing tools
+- [ ] Template library
+- [ ] Kubernetes deployment
+- [ ] Collaboration features
+
+---
+
+Made for the Kubernetes community

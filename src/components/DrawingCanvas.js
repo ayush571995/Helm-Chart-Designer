@@ -1,10 +1,13 @@
 // components/DrawingCanvas.js
-import React, { useState, useRef, useEffect, useCallback } from 'react';
+import React, { useState, useRef, useEffect, useCallback, forwardRef, useImperativeHandle } from 'react';
 import { CanvasService } from '../services';
 import { TOOL_TYPES } from '../constants';
 
-const DrawingCanvas = ({ currentTool, currentColor, onSaveToHistory }) => {
+
+// To this:
+const DrawingCanvas = forwardRef(({ currentTool, currentColor, onSaveToHistory }, ref) => {
   const canvasRef = useRef(null);
+  useImperativeHandle(ref, () => canvasRef.current);
   const [isDrawing, setIsDrawing] = useState(false);
   const [startPos, setStartPos] = useState(null);
 
@@ -96,6 +99,6 @@ const DrawingCanvas = ({ currentTool, currentColor, onSaveToHistory }) => {
       </div>
     </div>
   );
-};
+});
 
 export default DrawingCanvas;

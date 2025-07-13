@@ -16,12 +16,18 @@ const HelmChartDesigner = () => {
   const canvasHook = useCanvas(canvasRef);
 
   const handleGenerateYAML = async () => {
-    if (!canvasRef.current) return;
+    
+    if (!canvasRef.current) {
+      alert('Canvas not found! Draw something first.');
+      setIsGenerating(false);
+      return;
+    }
     
     setIsGenerating(true);
     setValidationResult(null);
     
     try {
+      console.log('Generating YAML from drawing...');
       const imageData = CanvasService.exportToImage(canvasRef.current);
       const result = await AIService.analyzeDrawing(imageData);
       

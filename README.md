@@ -1,5 +1,15 @@
 # Helm Chart Designer
 
+> **AI-Powered Visual Kubernetes Deployment Tool** - Transform sketches into production-ready Helm charts
+
+[![GitHub stars](https://img.shields.io/github/stars/username/helm-chart-designer)](https://github.com/username/helm-chart-designer/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/username/helm-chart-designer)](https://github.com/username/helm-chart-designer/network)
+[![GitHub issues](https://img.shields.io/github/issues/username/helm-chart-designer)](https://github.com/username/helm-chart-designer/issues)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+**Keywords:** Kubernetes, Helm Charts, Azure OpenAI, Visual Programming, DevOps, Infrastructure as Code, Diagram to Code, AI Tools, React Canvas
+
+
 > Transform sketches into Kubernetes deployments with AI
 
 A visual tool that converts hand-drawn architecture diagrams into production-ready Helm charts using Azure OpenAI analysis.
